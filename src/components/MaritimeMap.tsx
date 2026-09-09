@@ -64,11 +64,9 @@ export const MaritimeMap: React.FC<MaritimeMapProps> = ({
         attributionControl: false,
       });
 
-      // CartoDB Dark Matter tile layer with API key support
+      // CartoDB Dark Matter tile layer with official CARTO API key format
       const cartoKey = (import.meta as any).env?.VITE_CARTO_API_KEY || 'cb1_33vn_1_356322b03d3aa873306f928d';
-      const tileUrl = cartoKey
-        ? `https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?api_key=${cartoKey}`
-        : 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+      const tileUrl = `https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png?key=${cartoKey}`;
 
       L.tileLayer(tileUrl, {
         maxZoom: 19,
