@@ -64,8 +64,13 @@ export const MaritimeMap: React.FC<MaritimeMapProps> = ({
         attributionControl: false,
       });
 
-      // CartoDB Dark Matter tile layer
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      // CartoDB Dark Matter tile layer with API key support
+      const cartoKey = (import.meta as any).env?.VITE_CARTO_API_KEY || 'cb1_33vn_1_356322b03d3aa873306f928d';
+      const tileUrl = cartoKey
+        ? `https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?api_key=${cartoKey}`
+        : 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+
+      L.tileLayer(tileUrl, {
         maxZoom: 19,
         subdomains: 'abcd',
       }).addTo(map);
