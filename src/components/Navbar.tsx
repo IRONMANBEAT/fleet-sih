@@ -6,8 +6,6 @@ import {
   Ship,
   FileText,
   Cpu,
-  Radio,
-  Clock,
   ShieldCheck,
   ChevronRight
 } from 'lucide-react';
@@ -29,38 +27,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   return (
     <header className="w-full sticky top-0 z-40 bg-[#0B1A30]/95 backdrop-blur-xl border-b border-white/15 shadow-navy-card">
-      {/* Top operational status strip */}
-      <div className="w-full bg-[#06101E] border-b border-white/10 px-4 sm:px-6 lg:px-8 py-1.5 text-[11px] font-mono text-slate-300">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 text-emerald-400 font-semibold">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
-              <span>AIS STREAM ACTIVE</span>
-              <span className="text-slate-500">—</span>
-              <span className="text-slate-300 font-normal">VHF CH 87B</span>
-            </div>
-
-            <span className="hidden md:inline text-slate-600">•</span>
-
-            <div className="hidden md:flex items-center gap-1.5 text-slate-300">
-              <Radio className="w-3.5 h-3.5 text-cyan-400" />
-              <span>ARABIAN SEA CORRIDOR — BUOY NW-04</span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 text-slate-300">
-            <div className="flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-amber-400" />
-              <span>09-SEP-2026 06:43 UTC</span>
-            </div>
-            <span className="hidden sm:inline text-slate-600">•</span>
-            <span className="hidden sm:inline text-blue-300 font-semibold bg-blue-950/60 px-2 py-0.5 rounded border border-blue-800/60">
-              IMO MEPC.328(76) SEEMP-III
-            </span>
-          </div>
-        </div>
-      </div>
-
       {/* Main navigation header — guaranteed to fit within all viewports */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between gap-3">
         {/* Brand Logo & Compact Operational Descriptor */}
