@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Navbar } from './components/Navbar';
+import { VerticalSidebar } from './components/VerticalSidebar';
 import { HeroSection } from './components/HeroSection';
 import { FeatureModulesGrid } from './components/FeatureModulesGrid';
 import { QuickSimulatorSection } from './components/QuickSimulatorSection';
@@ -74,9 +74,9 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#0B1A30] text-slate-100 font-sans flex flex-col selection:bg-blue-500/25 selection:text-white">
-      {/* 1. ELEGANT SOOTHING NAVBAR */}
-      <Navbar
+    <div className="min-h-screen w-full bg-[#0B1A30] text-slate-100 font-sans flex flex-col lg:flex-row selection:bg-blue-500/25 selection:text-white">
+      {/* 1. LEFT VERTICAL SIDEBAR (Exactly as requested) */}
+      <VerticalSidebar
         onOpenRouteModal={() => setIsRouteModalOpen(true)}
         onOpenCarbonModal={() => setIsCarbonModalOpen(true)}
         onOpenFleetModal={() => setIsFleetModalOpen(true)}
@@ -84,52 +84,55 @@ export default function App() {
         onOpenAlgorithmModal={() => setIsAlgorithmModalOpen(true)}
       />
 
-      {/* 2. TRANQUIL HERO SECTION */}
-      <HeroSection
-        onOpenRouteModal={() => setIsRouteModalOpen(true)}
-        onOpenCarbonModal={() => setIsCarbonModalOpen(true)}
-        onOpenReportModal={() => setIsReportModalOpen(true)}
-      />
+      {/* 2. RIGHT MAIN CONTENT FLOW */}
+      <main className="flex-1 min-w-0 flex flex-col overflow-x-hidden">
+        {/* HERO SECTION */}
+        <HeroSection
+          onOpenRouteModal={() => setIsRouteModalOpen(true)}
+          onOpenCarbonModal={() => setIsCarbonModalOpen(true)}
+          onOpenReportModal={() => setIsReportModalOpen(true)}
+        />
 
-      {/* 3. CORE FUNCTION MODULES GRID (EACH WITH DEDICATED DIALOG TRIGGER) */}
-      <FeatureModulesGrid
-        onOpenRouteModal={() => setIsRouteModalOpen(true)}
-        onOpenCarbonModal={() => setIsCarbonModalOpen(true)}
-        onOpenFleetModal={() => setIsFleetModalOpen(true)}
-        onOpenReportModal={() => setIsReportModalOpen(true)}
-        onOpenAlgorithmModal={() => setIsAlgorithmModalOpen(true)}
-      />
+        {/* CORE FUNCTION MODULES GRID */}
+        <FeatureModulesGrid
+          onOpenRouteModal={() => setIsRouteModalOpen(true)}
+          onOpenCarbonModal={() => setIsCarbonModalOpen(true)}
+          onOpenFleetModal={() => setIsFleetModalOpen(true)}
+          onOpenReportModal={() => setIsReportModalOpen(true)}
+          onOpenAlgorithmModal={() => setIsAlgorithmModalOpen(true)}
+        />
 
-      {/* 4. LIVE INTERACTIVE SANDBOX SECTION */}
-      <QuickSimulatorSection
-        contracts={CONTRACTS}
-        selectedContractId={selectedContractId}
-        onSelectContract={(id) => {
-          setSelectedContractId(id);
-          handleUpdateParams({ selectedContractId: id });
-        }}
-        params={params}
-        onUpdateParams={handleUpdateParams}
-        analytics={analytics}
-        onOpenRouteModal={() => setIsRouteModalOpen(true)}
-        onOpenCarbonModal={() => setIsCarbonModalOpen(true)}
-      />
+        {/* LIVE INTERACTIVE SANDBOX SECTION */}
+        <QuickSimulatorSection
+          contracts={CONTRACTS}
+          selectedContractId={selectedContractId}
+          onSelectContract={(id) => {
+            setSelectedContractId(id);
+            handleUpdateParams({ selectedContractId: id });
+          }}
+          params={params}
+          onUpdateParams={handleUpdateParams}
+          analytics={analytics}
+          onOpenRouteModal={() => setIsRouteModalOpen(true)}
+          onOpenCarbonModal={() => setIsCarbonModalOpen(true)}
+        />
 
-      {/* 5. GREEN FLEET SHOWCASE */}
-      <FleetSection
-        vessels={vessels}
-        params={params}
-        onOpenFleetModal={() => setIsFleetModalOpen(true)}
-      />
+        {/* GREEN FLEET SHOWCASE */}
+        <FleetSection
+          vessels={vessels}
+          params={params}
+          onOpenFleetModal={() => setIsFleetModalOpen(true)}
+        />
 
-      {/* 6. SOOTHING FOOTER */}
-      <Footer
-        onOpenRouteModal={() => setIsRouteModalOpen(true)}
-        onOpenCarbonModal={() => setIsCarbonModalOpen(true)}
-        onOpenFleetModal={() => setIsFleetModalOpen(true)}
-        onOpenReportModal={() => setIsReportModalOpen(true)}
-        onOpenAlgorithmModal={() => setIsAlgorithmModalOpen(true)}
-      />
+        {/* FOOTER */}
+        <Footer
+          onOpenRouteModal={() => setIsRouteModalOpen(true)}
+          onOpenCarbonModal={() => setIsCarbonModalOpen(true)}
+          onOpenFleetModal={() => setIsFleetModalOpen(true)}
+          onOpenReportModal={() => setIsReportModalOpen(true)}
+          onOpenAlgorithmModal={() => setIsAlgorithmModalOpen(true)}
+        />
+      </main>
 
       {/* ========================================================================= */}
       {/* INTERACTIVE FUNCTION DIALOG BOXES (MODALS)                                */}
