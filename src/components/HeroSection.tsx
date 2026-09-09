@@ -36,18 +36,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto space-y-8 relative z-10">
-        {/* Operational Notice Tag — Em Dash usage */}
+        {/* Operational Notice Tag */}
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-white/10 border border-white/20 text-white text-xs font-mono shadow-md">
             <Radio className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
             <span className="font-semibold text-emerald-300">LIVE VOYAGE OPTIMIZATION</span>
             <span className="text-white/40">—</span>
             <span className="text-slate-200">INBOM (Mumbai) ➔ AEJEA (Dubai)</span>
-          </div>
-
-          <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-blue-200">
-            <ShieldCheck className="w-4 h-4 text-cyan-300" />
-            <span>IMO Resolution MEPC.346 — SEEMP Part III</span>
           </div>
         </div>
 
