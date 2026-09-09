@@ -18,6 +18,7 @@ interface VerticalSidebarProps {
   onOpenFleetModal: () => void;
   onOpenReportModal: () => void;
   onOpenAlgorithmModal: () => void;
+  onLogout?: () => void;
 }
 
 export const VerticalSidebar: React.FC<VerticalSidebarProps> = ({
@@ -26,6 +27,7 @@ export const VerticalSidebar: React.FC<VerticalSidebarProps> = ({
   onOpenFleetModal,
   onOpenReportModal,
   onOpenAlgorithmModal,
+  onLogout,
 }) => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
 
@@ -256,7 +258,7 @@ export const VerticalSidebar: React.FC<VerticalSidebarProps> = ({
         </div>
 
         {/* Bottom Actions Strip */}
-        <div className="space-y-2.5 pt-6 border-t border-white/10">
+        <div className="space-y-3 pt-5 border-t border-white/10">
           <button
             onClick={onOpenCarbonModal}
             className="w-full py-2.5 px-3.5 rounded-xl bg-[#0F223D] hover:bg-[#152E52] border border-white/10 text-xs font-bold text-white flex items-center gap-2 shadow-sm transition-all cursor-pointer"
@@ -275,6 +277,29 @@ export const VerticalSidebar: React.FC<VerticalSidebarProps> = ({
             </div>
             <ChevronRight className="w-4 h-4 text-[#0B1A30]" />
           </button>
+
+          {/* Active User Session & Sign Out */}
+          <div className="pt-2 border-t border-white/10 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded-lg bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 flex items-center justify-center font-bold text-xs">
+                AD
+              </div>
+              <div className="text-left">
+                <span className="font-bold text-xs text-white block leading-none">admin</span>
+                <span className="text-[10px] text-emerald-400 font-mono">Fleet Commander</span>
+              </div>
+            </div>
+
+            {onLogout && (
+              <button
+                onClick={onLogout}
+                className="text-[11px] font-mono text-slate-400 hover:text-red-300 hover:bg-red-950/40 px-2 py-1 rounded transition-colors cursor-pointer"
+                title="Sign out of mission control"
+              >
+                Sign Out
+              </button>
+            )}
+          </div>
         </div>
       </aside>
     </>

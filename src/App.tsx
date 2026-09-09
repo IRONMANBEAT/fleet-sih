@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { LoginPage } from './components/LoginPage';
 import { VerticalSidebar } from './components/VerticalSidebar';
 import { HeroSection } from './components/HeroSection';
 import { FeatureModulesGrid } from './components/FeatureModulesGrid';
@@ -18,6 +19,11 @@ import { FuelPrices, SimulationParams, Vessel } from './types';
 import { calculateVoyageAnalytics } from './utils/calculations';
 
 export default function App() {
+  // Authentication state (hardcoded demo access: admin / admin)
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    return localStorage.getItem('quantmarine_auth') === 'true';
+  });
+
   // State
   const [fuelPrices, setFuelPrices] = useState<FuelPrices>(INITIAL_FUEL_PRICES);
   const [vessels, setVessels] = useState<Vessel[]>(INITIAL_VESSELS);
@@ -73,15 +79,26 @@ export default function App() {
     }, 1000);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('quantmarine_auth');
+    setIsAuthenticated(false);
+  };
+
+  // If not authenticated, display the showcasing login page
+  if (!isAuthenticated) {
+    return <LoginPage onLogin={() => setIsAuthenticated(true)} />;
+  }
+
   return (
     <div className="min-h-screen w-full bg-[#0B1A30] text-slate-100 font-sans flex flex-col lg:flex-row selection:bg-blue-500/25 selection:text-white">
-      {/* 1. LEFT VERTICAL SIDEBAR (Exactly as requested) */}
+      {/* 1. LEFT VERTICAL SIDEBAR */}
       <VerticalSidebar
         onOpenRouteModal={() => setIsRouteModalOpen(true)}
         onOpenCarbonModal={() => setIsCarbonModalOpen(true)}
         onOpenFleetModal={() => setIsFleetModalOpen(true)}
         onOpenReportModal={() => setIsReportModalOpen(true)}
         onOpenAlgorithmModal={() => setIsAlgorithmModalOpen(true)}
+        onLogout={handleLogout}
       />
 
       {/* 2. RIGHT MAIN CONTENT FLOW */}
